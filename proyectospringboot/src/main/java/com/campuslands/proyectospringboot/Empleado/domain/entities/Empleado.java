@@ -18,28 +18,28 @@ public class Empleado {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nombreEmpleado")
+    @Column(name = "nombre_empleado")
     private String nombreEmpleado;
 
-    @Column(name = "apellido1Empleado")
+    @Column(name = "apellido1_empleado")
     private String apellido1Empleado;
 
-    @Column(name = "apellido2Empleado")
+    @Column(name = "apellido2_empleado")
     private String apellido2Empleado;
 
-    @Column(name = "extensionEmpleado")
+    @Column(name = "extension_empleado")
     private String extensionEmpleado;
 
-    @Column(name = "emailEmpleado")
+    @Column(name = "email_empleado")
     private String emailEmpleado;
 
     @ManyToOne
-    @JoinColumn(name = "puestoEmpleadoId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "puesto_empleado_id", referencedColumnName = "id", nullable = false)
     private Puesto puesto;
 
     @ManyToOne
-    @JoinColumn(name = "oficinaEmpleadoId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "oficina_empleado_id", referencedColumnName = "id", nullable = false)
     private Oficina oficina;
 
-    
+
 }
