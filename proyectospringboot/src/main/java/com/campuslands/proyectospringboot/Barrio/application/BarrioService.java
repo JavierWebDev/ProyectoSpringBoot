@@ -28,4 +28,8 @@ public class BarrioService {
     public void create(Barrio barrio) {
         barrioRepository.save(barrio);
     }
+
+    public void deleteById(Long id) {
+        barrioRepository.deleteById(id);
+    }
 }
