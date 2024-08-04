@@ -40,6 +40,4 @@ public class Empleado {
     @ManyToOne
     @JoinColumn(name = "oficina_empleado_id", referencedColumnName = "id", nullable = false)
     private Oficina oficina;
-
-
 }
