@@ -41,4 +41,5 @@ public class Empleado {
     @JoinColumn(name = "oficinaEmpleadoId", referencedColumnName = "id", nullable = false)
     private Oficina oficina;
 
+    
 }
