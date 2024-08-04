@@ -26,13 +26,13 @@ public class Pago {
     private Integer transaccion;
 
     @ManyToOne
-    @JoinColumn(name = "forma_pago_pago")
+    @JoinColumn(name = "forma_pago_pago", referencedColumnName = "id", nullable = false)
     private FormaPago formaPago;
 
     @Column (name = "fecha_pago")
     Timestamp fechaPago;
 
     @ManyToOne
-    @JoinColumn(name = "pago_cliente")
+    @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
     private Cliente pagoCliente;
 }

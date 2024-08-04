@@ -27,18 +27,19 @@ public class Producto {
     private Integer precioVenta;
 
     @ManyToOne
-    @JoinColumn(name = "gama_producto")
+    @JoinColumn(name = "gama_producto", referencedColumnName = "id", nullable = false)
     private GamaProducto gamaProducto;
 
-    @Column(name = "dimensiones_producto")
+    @ManyToOne
+    @JoinColumn(name = "dimensiones_producto", referencedColumnName = "id", nullable = false)
     private Integer dimensionesProducto;
 
     @ManyToOne
-    @JoinColumn(name = "proveedor_producto")
+    @JoinColumn(name = "proveedor_producto", referencedColumnName = "id", nullable = false)
     private Proveedor proveedorProducto;
 
     @ManyToOne
-    @JoinColumn(name = "stock_producto")
+    @JoinColumn(name = "stock_producto", referencedColumnName = "id", nullable = false)
     private Stock stockProducto;
 
 }

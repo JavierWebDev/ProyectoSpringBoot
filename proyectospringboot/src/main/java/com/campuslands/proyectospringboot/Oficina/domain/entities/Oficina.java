@@ -26,22 +26,22 @@ public class Oficina {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "telefono_oficina")
+    @JoinColumn(name = "telefono_oficina", referencedColumnName = "id", nullable = false)
     private Telefono telefono;
 
     @ManyToOne
-    @JoinColumn(name = "ciudad_oficina")
+    @JoinColumn(name = "ciudad_oficina", referencedColumnName = "id", nullable = false)
     private Ciudad ciudad;
 
     @ManyToOne
-    @JoinColumn(name = "pais_oficina")
+    @JoinColumn(name = "pais_oficina", referencedColumnName = "id", nullable = false)
     private Pais pais;
 
     @OneToOne
-    @JoinColumn(name = "codigo_postal_oficina")
+    @JoinColumn(name = "codigo_postal_oficina", referencedColumnName = "id", nullable = false)
     private CodigoPostal codigoPostal;
 
     @OneToOne
-    @JoinColumn(name = "direccion_oficina")
+    @JoinColumn(name = "direccion_oficina", referencedColumnName = "id", nullable = false)
     private Direccion direccion;
 }
