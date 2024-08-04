@@ -1,4 +1,4 @@
-package com.campuslands.proyectospringboot.Barrio.domain.entities;
+package com.campuslands.proyectospringboot.Barrio.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
