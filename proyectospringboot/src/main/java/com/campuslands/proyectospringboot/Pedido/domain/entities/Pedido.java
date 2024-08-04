@@ -33,15 +33,15 @@ public class Pedido {
     private String comentarios;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_pedido")
+    @JoinColumn(name = "cliente_pedido", referencedColumnName = "id", nullable = false)
     private Cliente clientePedido;
 
     @ManyToOne
-    @JoinColumn(name = "estado_pedido")
+    @JoinColumn(name = "estado_pedido", referencedColumnName = "id", nullable = false)
     private Estado estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "detalle_pedido")
+    @JoinColumn(name = "detalle_pedido", referencedColumnName = "id", nullable = false)
     private DetallePedido detallePedido;
 
 
