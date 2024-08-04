@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectospringbootApplication<proyectospringboot>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.campuslands.proyectospringboot.ProyectospringbootApplication",
+            "projectName": "proyectospringboot",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
