@@ -42,16 +42,17 @@ public class OficinaImpl implements OficinaService{
         return oficinaOpt;
     }
 
+    @Transactional
     @Override
     public Optional<Oficina> update(Long id, Oficina oficina) {
         Optional<Oficina> oficinaOpt = repository.findById(id);
         if (oficinaOpt.isPresent()) {
             Oficina oficinaItem = oficinaOpt.orElseThrow();
-            oficinaItem.setTelefono(Oficina.getTelefono());
-            oficinaItem.setCiudad(Oficina.getCiudad());
-            oficinaItem.setPais(Oficina.getPais());
-            oficinaItem.setCodigoPostal(Oficina.getCodigoPostal());
-            oficinaItem.setDireccion(Oficina.getDireccion());
+            oficinaItem.setTelefono(oficina.getTelefono());
+            oficinaItem.setCiudad(oficina.getCiudad());
+            oficinaItem.setPais(oficina.getPais());
+            oficinaItem.setCodigoPostal(oficina.getCodigoPostal());
+            oficinaItem.setDireccion(oficina.getDireccion());
             return Optional.of(repository.save(oficinaItem));
         }
         return oficinaOpt;
