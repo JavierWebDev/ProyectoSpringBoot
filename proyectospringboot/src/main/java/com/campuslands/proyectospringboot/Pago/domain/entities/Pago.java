@@ -2,7 +2,7 @@ package com.campuslands.proyectospringboot.Pago.domain.entities;
 
 import java.security.Timestamp;
 
-import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
 import com.campuslands.proyectospringboot.FormaPago.domain.entities.FormaPago;
 
 import jakarta.persistence.Column;
@@ -26,13 +26,13 @@ public class Pago {
     private Integer transaccion;
 
     @ManyToOne
-    @JoinColumn(name = "forma_pago_pago")
+    @JoinColumn(name = "forma_pago_pago", referencedColumnName = "id", nullable = false)
     private FormaPago formaPago;
 
     @Column (name = "fecha_pago")
     Timestamp fechaPago;
 
     @ManyToOne
-    @JoinColumn(name = "pago_cliente")
+    @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
     private Cliente pagoCliente;
 }

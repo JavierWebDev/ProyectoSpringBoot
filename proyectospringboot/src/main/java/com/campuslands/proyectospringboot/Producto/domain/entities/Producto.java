@@ -1,10 +1,10 @@
 package com.campuslands.proyectospringboot.Producto.domain.entities;
 
+import com.campuslands.proyectospringboot.Dimensiones.domain.entities.Dimensiones;
 import com.campuslands.proyectospringboot.GamaProducto.domain.entities.GamaProducto;
 import com.campuslands.proyectospringboot.Proveedor.domain.entities.Proveedor;
 import com.campuslands.proyectospringboot.Stock.domain.entities.Stock;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,18 +27,19 @@ public class Producto {
     private Integer precioVenta;
 
     @ManyToOne
-    @JoinColumn(name = "gama_producto")
+    @JoinColumn(name = "gama_producto", referencedColumnName = "id", nullable = false)
     private GamaProducto gamaProducto;
 
-    @Column(name = "dimensiones_producto")
-    private Integer dimensionesProducto;
+    @ManyToOne
+    @JoinColumn(name = "dimensiones_producto", referencedColumnName = "id", nullable = false)
+    private Dimensiones dimensionesProducto;
 
     @ManyToOne
-    @JoinColumn(name = "proveedor_producto")
+    @JoinColumn(name = "proveedor_producto", referencedColumnName = "id", nullable = false)
     private Proveedor proveedorProducto;
 
     @ManyToOne
-    @JoinColumn(name = "stock_producto")
+    @JoinColumn(name = "stock_producto", referencedColumnName = "id", nullable = false)
     private Stock stockProducto;
 
 }

@@ -1,8 +1,8 @@
 package com.campuslands.proyectospringboot.Empleado.domain.entities;
 
-import org.hibernate.annotations.EmbeddableInstantiator;
 
 import com.campuslands.proyectospringboot.Oficina.domain.entities.Oficina;
+// import com.campuslands.proyectospringboot.Puesto.domain.entities.Puesto;
 import com.campuslands.proyectospringboot.Puesto.domain.entities.Puesto;
 
 import jakarta.persistence.*;
@@ -40,6 +40,4 @@ public class Empleado {
     @ManyToOne
     @JoinColumn(name = "oficina_empleado_id", referencedColumnName = "id", nullable = false)
     private Oficina oficina;
-
-
 }
