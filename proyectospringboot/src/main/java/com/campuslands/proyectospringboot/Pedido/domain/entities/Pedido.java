@@ -2,8 +2,8 @@ package com.campuslands.proyectospringboot.Pedido.domain.entities;
 
 import java.security.Timestamp;
 
-import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
-import com.campuslands.proyectospringboot.DetallePedido.domain.entities.DetallePedido;
+import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
+import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 import com.campuslands.proyectospringboot.Estado.domain.entities.Estado;
 
 import jakarta.persistence.Column;

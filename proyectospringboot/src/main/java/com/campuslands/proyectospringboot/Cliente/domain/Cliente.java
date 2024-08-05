@@ -5,17 +5,11 @@ import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.Contacto.domain.Contacto;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
-// import com.campuslands.proyectospringboot.Telefono.domain.Telefono;
+import com.campuslands.proyectospringboot.Fax.domain.entities.Fax;
+import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
+import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -35,22 +29,19 @@ public class Cliente {
     @Column(name = "apellido2_cliente")
     private String apellido2;
 
-    @OneToOne
+    @ManyToMany
     @JoinColumn(name = "contacto_cliente")
     private Contacto contacto;
 
-    /*
-     * @OneToOne
-     * 
-     * @JoinColumn(name = "telefono_cliente")
-     * private Telefono telefono;
-     * 
-     * @OneToOne
-     * 
-     * @JoinColumn(name = "fax_cliente")
-     * private Fax fax;
-     */
-
+    
+    @ManyToMany
+    @JoinColumn(name = "telefono_cliente")
+    private Telefono telefono;
+ 
+    @ManyToMany
+    @JoinColumn(name = "fax_cliente")
+    private Fax fax;
+    
     @ManyToOne
     @JoinColumn(name = "direccion_clientes")
     private Direccion direccion;
@@ -63,12 +54,11 @@ public class Cliente {
     @JoinColumn(name = "codigo_postal_cliente")
     private CodigoPostal codigoPostal;
 
-    /*
-     * @ManyToOne
-     * 
-     * @JoinColumn(name = "pais_cliente")
-     * private Pais pais;
-     */
+    
+    @ManyToOne
+    @JoinColumn(name = "pais_cliente")
+    private Pais pais;
+     
 
     @ManyToOne
     @JoinColumn(name = "empleado_cliente")

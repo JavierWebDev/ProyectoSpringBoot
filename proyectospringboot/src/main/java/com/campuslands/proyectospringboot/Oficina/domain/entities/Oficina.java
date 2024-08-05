@@ -1,10 +1,10 @@
 package com.campuslands.proyectospringboot.Oficina.domain.entities;
 
-import com.campuslands.proyectospringboot.Telefono.domain.entities.Telefono;
-import com.campuslands.proyectospringboot.Ciudad.domain.entities.Ciudad;
-import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
-import com.campuslands.proyectospringboot.CodigoPostal.domain.entities.CodigoPostal;
+import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
+import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
+import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
+import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
