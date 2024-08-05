@@ -3,9 +3,12 @@ package com.campuslands.proyectospringboot.CodigoPostal.application;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.CodigoPostal.infrastructure.adapters.out.CodigoPostalRepository;
 
+@Service
 public class CodigoPostalService {
     private final CodigoPostalRepository codigoPostalRepository;
 

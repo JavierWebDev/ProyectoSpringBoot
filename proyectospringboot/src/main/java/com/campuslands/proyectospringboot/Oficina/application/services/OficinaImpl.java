@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campuslands.proyectospringboot.Oficina.domain.entities.Oficina;
 import com.campuslands.proyectospringboot.Oficina.infrastructure.out.persistence.OficinaRepository;
 
+@Component
 public class OficinaImpl implements OficinaService{
 
     @Autowired

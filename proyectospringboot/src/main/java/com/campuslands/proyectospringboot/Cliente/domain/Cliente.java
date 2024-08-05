@@ -29,16 +29,16 @@ public class Cliente {
     @Column(name = "apellido2_cliente")
     private String apellido2;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "contacto_cliente")
     private Contacto contacto;
 
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "telefono_cliente")
     private Telefono telefono;
  
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "fax_cliente")
     private Fax fax;
     

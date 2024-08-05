@@ -3,9 +3,12 @@ package com.campuslands.proyectospringboot.Contacto.application;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.campuslands.proyectospringboot.Contacto.domain.Contacto;
 import com.campuslands.proyectospringboot.Contacto.infrastructure.adapters.out.ContactoRepository;
 
+@Service
 public class ContactoService {
     private final ContactoRepository contactoRepository;
 

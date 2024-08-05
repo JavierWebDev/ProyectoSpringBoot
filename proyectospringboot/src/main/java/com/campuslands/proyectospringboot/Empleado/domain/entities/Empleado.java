@@ -3,6 +3,7 @@ package com.campuslands.proyectospringboot.Empleado.domain.entities;
 
 import com.campuslands.proyectospringboot.Oficina.domain.entities.Oficina;
 // import com.campuslands.proyectospringboot.Puesto.domain.entities.Puesto;
+import com.campuslands.proyectospringboot.Puesto.domain.entities.Puesto;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,9 +33,9 @@ public class Empleado {
     @Column(name = "email_empleado")
     private String emailEmpleado;
 
-/*     @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "puesto_empleado_id", referencedColumnName = "id", nullable = false)
-    private Puesto puesto; */
+    private Puesto puesto;
 
     @ManyToOne
     @JoinColumn(name = "oficina_empleado_id", referencedColumnName = "id", nullable = false)

@@ -3,9 +3,12 @@ package com.campuslands.proyectospringboot.Ciudad.application;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 import com.campuslands.proyectospringboot.Ciudad.infrastructure.adapters.CiudadRepository;
 
+@Service
 public class CiudadService {
     private final CiudadRepository ciudadRepository;
 

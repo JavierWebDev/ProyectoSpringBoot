@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 import com.campuslands.proyectospringboot.Pedido.infrastructure.out.persistence.PedidoRepository;
 
+@Component
 public class PedidoImpl implements PedidoService{
 
     @Autowired

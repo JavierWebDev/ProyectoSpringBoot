@@ -1,5 +1,6 @@
 package com.campuslands.proyectospringboot.Producto.domain.entities;
 
+import com.campuslands.proyectospringboot.Dimensiones.domain.entities.Dimensiones;
 import com.campuslands.proyectospringboot.GamaProducto.domain.entities.GamaProducto;
 import com.campuslands.proyectospringboot.Proveedor.domain.entities.Proveedor;
 import com.campuslands.proyectospringboot.Stock.domain.entities.Stock;
@@ -31,7 +32,7 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "dimensiones_producto", referencedColumnName = "id", nullable = false)
-    private Integer dimensionesProducto;
+    private Dimensiones dimensionesProducto;
 
     @ManyToOne
     @JoinColumn(name = "proveedor_producto", referencedColumnName = "id", nullable = false)

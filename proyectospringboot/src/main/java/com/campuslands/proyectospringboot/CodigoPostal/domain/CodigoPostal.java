@@ -1,14 +1,9 @@
 package com.campuslands.proyectospringboot.CodigoPostal.domain;
 
-import javax.swing.plaf.synth.Region;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import com.campuslands.proyectospringboot.Region.domain.entities.Region;
+
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -21,8 +16,8 @@ public class CodigoPostal {
 
     private String codigo;
 
-    @OneToOne
-    @JoinColumn(name = "region_global")
+    @ManyToOne
+    @JoinColumn(name = "region_global", referencedColumnName = "id", nullable = false)
     private Region region;
 
 }

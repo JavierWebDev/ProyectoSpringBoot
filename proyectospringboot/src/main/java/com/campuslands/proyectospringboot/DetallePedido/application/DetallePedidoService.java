@@ -3,9 +3,12 @@ package com.campuslands.proyectospringboot.DetallePedido.application;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 import com.campuslands.proyectospringboot.DetallePedido.infrastructure.adapters.out.DetallePedidoRepository;
 
+@Service
 public class DetallePedidoService {
     private final DetallePedidoRepository detallePedidoRepository;
 
