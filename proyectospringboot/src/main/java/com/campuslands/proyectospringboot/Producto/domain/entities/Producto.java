@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -24,7 +26,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="El nombre del producto no puede ser nulo")
+    @NotBlank(message="El nombre del producto no puede ser vacío")
     @Column (name = "nombre_producto", nullable = false)
     private String nombreProducto;
 
@@ -37,21 +39,25 @@ public class Producto {
     private Integer precioVenta;
 
     @ManyToOne
+    @Valid
     @NotNull(message="La gama de producto no puede ser nulo")
     @JoinColumn(name = "gama_producto", referencedColumnName = "id", nullable = false)
     private GamaProducto gamaProducto;
 
     @ManyToOne
+    @Valid
     @NotNull(message="Las dimensiones de producto no puede ser nulo")
     @JoinColumn(name = "dimensiones_producto", referencedColumnName = "id", nullable = false)
     private Dimensiones dimensionesProducto;
 
     @ManyToOne
+    @Valid
     @NotNull(message="El proveedor no puede ser nulo")
     @JoinColumn(name = "proveedor_producto", referencedColumnName = "id", nullable = false)
     private Proveedor proveedorProducto;
 
     @ManyToOne
+    @Valid
     @NotNull(message="El stock de producto no puede ser nulo")
     @JoinColumn(name = "stock_producto", referencedColumnName = "id", nullable = false)
     private Stock stockProducto;

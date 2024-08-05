@@ -6,7 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -18,11 +19,12 @@ public class TipoTelefono {
     @Column(name= "id")
     private Long id;
 
-    @NotNull(message="El nombre del tipo de telefono no puede ser nulo")
+    @Size(max=50)
+    @NotBlank(message="El nombre del tipo de telefono no puede ser vacío")
     @Column(name= "nombre_tipo_tel")
     private String nombre;
 
-    @NotNull(message="La descripcion del tipo de telefono no puede ser nula")
+    @NotBlank(message="La descripcion del tipo de telefono no puede ser vacío")
     @Column(name= "descripcion_tel")
     private String descripcion;
 }

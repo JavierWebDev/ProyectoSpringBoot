@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -16,9 +18,13 @@ public class Contacto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message="El nombre no puede ser vacío")
+    @Size(max=50)
     @Column(name = "nombre_contacto")
-    private String apellido;
-
-    @Column(name = "apellido_contacto")
     private String nombre;
+
+    @NotBlank(message="El apellido no puede ser vacío")
+    @Size(max=50)
+    @Column(name = "apellido_contacto")
+    private String apellido;
 }

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.CodigoPostal.application.CodigoPostalService;
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/codigopostal")
 public class CodigoPostalController {
@@ -44,12 +46,12 @@ public class CodigoPostalController {
     }
 
     @PostMapping
-    public void create(@RequestBody CodigoPostal codigoPostal) {
+    public void create(@Valid @RequestBody CodigoPostal codigoPostal) {
         codigoPostalService.create(codigoPostal);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody CodigoPostal codigoPostal) {
+    public void update(@PathVariable Long id, @Valid @RequestBody CodigoPostal codigoPostal) {
         codigoPostal.setId(id);
         codigoPostalService.create(codigoPostal);
     }

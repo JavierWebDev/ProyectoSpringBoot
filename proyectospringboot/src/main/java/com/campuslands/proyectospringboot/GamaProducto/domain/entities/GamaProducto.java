@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -18,7 +18,7 @@ public class GamaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="La descripción del producto no puede ser nulo")
+    @NotBlank(message="La descripción del producto no puede ser vacío")
     @Column (nullable = false)
     private String descripcion;
 

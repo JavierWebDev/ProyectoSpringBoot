@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -29,6 +30,7 @@ public class Pago {
     private Integer transaccion;
 
     @ManyToOne
+    @Valid
     @NotNull(message="La forma de pago no puede ser nulo")
     @JoinColumn(name = "forma_pago_pago", referencedColumnName = "id", nullable = false)
     private FormaPago formaPago;
@@ -38,6 +40,7 @@ public class Pago {
     Timestamp fechaPago;
 
     @ManyToOne
+    @Valid
     @NotNull(message="El cliente no puede ser nulo")
     @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
     private Cliente pagoCliente;

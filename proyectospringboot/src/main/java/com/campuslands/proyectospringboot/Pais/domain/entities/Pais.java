@@ -6,7 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -17,7 +18,8 @@ public class Pais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="El nombre del pais no puede ser nulo")
+    @NotBlank(message="El nombre del pais no puede ser vacío")
+    @Size(max=50)
     @Column(nullable = false)
     private String name;
 }

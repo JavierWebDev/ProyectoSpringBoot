@@ -20,5 +20,5 @@ public class Stock {
 
     @NotNull(message="La cantidad en Stock no puede ser nula")
     @Column(name= "stock")
-    private String stock;
+    private Integer stock;
 }

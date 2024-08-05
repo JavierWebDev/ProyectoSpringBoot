@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -18,7 +19,7 @@ public class Direccion {
     @Column(name = "id")
     private Long id;
 
-    @NotNull(message="La calle no puede ser nulo")
+    @NotBlank(message="La calle no puede ser vacío")
     @Column(name = "calle", nullable = false)
     private String calle;
 
@@ -26,7 +27,7 @@ public class Direccion {
     @Column(name = "numero", nullable = false)
     private Integer numero;
 
-    @NotNull(message="El barrio no puede ser nulo")
+    @NotBlank(message="El barrio no puede ser vacío")
     @Column(name = "barrio", nullable = false)
     private String barrio;
 }
