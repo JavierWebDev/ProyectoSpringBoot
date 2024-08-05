@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Barrio.application.BarrioService;
 import com.campuslands.proyectospringboot.Barrio.domain.Barrio;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
@@ -41,12 +44,12 @@ public class BarrioController {
     }
 
     @PostMapping
-    public void create(@RequestBody Barrio barrio) {
+    public void create(@Valid @RequestBody Barrio barrio) {
         barrioService.create(barrio);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody Barrio barrio) {
+    public void update(@PathVariable Long id, @Valid @RequestBody Barrio barrio) {
         barrio.setId(id);
         barrioService.create(barrio);
     }

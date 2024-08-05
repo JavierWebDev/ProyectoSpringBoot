@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -17,7 +17,7 @@ public class FormaPago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message="El nombre de la forma de pago no puede ser nulo")
+    @NotBlank(message="El nombre de la forma de pago no puede ser vacío")
     @Column (nullable = false)
     private String FormaPago;
 }

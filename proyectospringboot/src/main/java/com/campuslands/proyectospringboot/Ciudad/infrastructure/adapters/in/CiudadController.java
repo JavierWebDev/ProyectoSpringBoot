@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
+
+import jakarta.validation.Valid;
+
 import com.campuslands.proyectospringboot.Ciudad.application.CiudadService;
 
 @RestController
@@ -44,12 +47,12 @@ public class CiudadController {
     }
 
     @PostMapping
-    public void create(@RequestBody Ciudad ciudad) {
+    public void create(@Valid @RequestBody Ciudad ciudad) {
         ciudadService.create(ciudad);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody Ciudad ciudad) {
+    public void update(@PathVariable Long id, @Valid @RequestBody Ciudad ciudad) {
         ciudad.setId(id);
         ciudadService.create(ciudad);
     }

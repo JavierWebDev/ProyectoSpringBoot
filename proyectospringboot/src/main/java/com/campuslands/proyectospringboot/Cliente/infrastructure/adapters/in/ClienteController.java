@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
+
+import jakarta.validation.Valid;
+
 import com.campuslands.proyectospringboot.Cliente.application.ClienteService;
 
 @RestController
@@ -44,12 +47,12 @@ public class ClienteController {
     }
 
     @PostMapping
-    public void create(@RequestBody Cliente cliente) {
+    public void create(@Valid @RequestBody Cliente cliente) {
         clienteService.create(cliente);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody Cliente cliente) {
+    public void update(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
         cliente.setId(id);
         clienteService.create(cliente);
     }
