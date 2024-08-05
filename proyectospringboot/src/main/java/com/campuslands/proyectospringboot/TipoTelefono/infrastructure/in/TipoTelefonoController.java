@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campuslands.proyectospringboot.TipoTelefono.domain.entities.TipoTelefono;
 import com.campuslands.proyectospringboot.TipoTelefono.app.service.TipoTelefonoService;
+import com.campuslands.proyectospringboot.TipoTelefono.domain.entities.TipoTelefono;
 
 import jakarta.validation.Valid;
 
