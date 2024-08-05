@@ -21,6 +21,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/formaPago")
 @AllArgsConstructor
 public class FormaPagoController {
+    
     private final FormaPagoService formaPagoService;
 
     @GetMapping
