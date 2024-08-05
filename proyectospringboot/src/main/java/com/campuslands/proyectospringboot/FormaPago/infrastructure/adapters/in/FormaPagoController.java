@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.FormaPago.app.services.FormaPagoService;
 import com.campuslands.proyectospringboot.FormaPago.domain.entities.FormaPago;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -33,12 +34,12 @@ public class FormaPagoController {
     }
 
     @PostMapping
-    public FormaPago createFormaPago(@RequestBody FormaPago formaPago) {
+    public FormaPago createFormaPago(@Valid @RequestBody FormaPago formaPago) {
         return formaPagoService.save(formaPago);
     }
 
     @PutMapping("/{id}")
-    public FormaPago updateFormaPago(@PathVariable Long id, @RequestBody FormaPago formaPago) {
+    public FormaPago updateFormaPago(@PathVariable Long id, @Valid @RequestBody FormaPago formaPago) {
         formaPago.setId(id);
         return formaPagoService.save(formaPago);
     }

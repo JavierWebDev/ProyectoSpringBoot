@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -26,22 +27,26 @@ public class Oficina {
     private Long id;
 
     @ManyToOne
+    @NotNull(message="El teléfono de oficina no puede ser nulo")
     @JoinColumn(name = "telefono_oficina", referencedColumnName = "id", nullable = false)
     private Telefono telefono;
 
     @ManyToOne
+    @NotNull(message="La ciudad de la oficina no puede ser nulo")
     @JoinColumn(name = "ciudad_oficina", referencedColumnName = "id", nullable = false)
     private Ciudad ciudad;
 
     @ManyToOne
+    @NotNull(message="El país de la oficina no puede ser nulo")
     @JoinColumn(name = "pais_oficina", referencedColumnName = "id", nullable = false)
     private Pais pais;
 
     @OneToOne
-    @JoinColumn(name = "codigo_postal_oficina", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "codigo_postal_oficina", referencedColumnName = "id")
     private CodigoPostal codigoPostal;
 
     @OneToOne
+    @NotNull(message="La dirección de la oficina no puede ser nulo")
     @JoinColumn(name = "direccion_oficina", referencedColumnName = "id", nullable = false)
     private Direccion direccion;
 }
