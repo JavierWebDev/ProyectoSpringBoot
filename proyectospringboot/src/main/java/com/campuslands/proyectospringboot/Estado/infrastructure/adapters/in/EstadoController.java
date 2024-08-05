@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.Estado.app.services.EstadoService;
 import com.campuslands.proyectospringboot.Estado.domain.entities.Estado;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -34,12 +35,12 @@ public class EstadoController {
     }
 
     @PostMapping
-    public Estado createEstado(@RequestBody Estado estado) {
+    public Estado createEstado(@Valid @RequestBody Estado estado) {
         return estadoService.save(estado);
     }
 
     @PutMapping("/{id}")
-    public Estado updateEstado(@PathVariable Long id, @RequestBody Estado estado) {
+    public Estado updateEstado(@PathVariable Long id, @Valid @RequestBody Estado estado) {
         estado.setId(id);
         return estadoService.save(estado);
     }

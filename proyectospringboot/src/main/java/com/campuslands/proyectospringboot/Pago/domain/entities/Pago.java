@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -23,16 +24,21 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message="La transaccion no puede ser nulo")
+    @Column(nullable = false)
     private Integer transaccion;
 
     @ManyToOne
+    @NotNull(message="La forma de pago no puede ser nulo")
     @JoinColumn(name = "forma_pago_pago", referencedColumnName = "id", nullable = false)
     private FormaPago formaPago;
 
-    @Column (name = "fecha_pago")
+    @NotNull(message="La fecha de pago no puede ser nulo")
+    @Column (name = "fecha_pago", nullable=false)
     Timestamp fechaPago;
 
     @ManyToOne
+    @NotNull(message="El cliente no puede ser nulo")
     @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
     private Cliente pagoCliente;
 }

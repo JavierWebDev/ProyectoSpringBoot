@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.Empleado.app.services.EmpleadoService;
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -34,12 +35,12 @@ public class EmpleadoController {
     }
 
     @PostMapping
-    public Empleado createEmpleado(@RequestBody Empleado Empleado) {
+    public Empleado createEmpleado(@Valid @RequestBody Empleado Empleado) {
         return EmpleadoService.save(Empleado);
     }
 
     @PutMapping("/{id}")
-    public Empleado updateEmpleado(@PathVariable Long id, @RequestBody Empleado Empleado) {
+    public Empleado updateEmpleado(@PathVariable Long id, @Valid @RequestBody Empleado Empleado) {
         Empleado.setId(id);
         return EmpleadoService.save(Empleado);
     }

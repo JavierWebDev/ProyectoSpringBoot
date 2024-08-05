@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.Fax.app.services.FaxService;
 import com.campuslands.proyectospringboot.Fax.domain.entities.Fax;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -33,12 +34,12 @@ public class FaxController {
     }
 
     @PostMapping
-    public Fax createFax(@RequestBody Fax Fax) {
+    public Fax createFax(@Valid @RequestBody Fax Fax) {
         return faxService.save(Fax);
     }
 
     @PutMapping("/{id}")
-    public Fax updateFax(@PathVariable Long id, @RequestBody Fax fax) {
+    public Fax updateFax(@PathVariable Long id, @Valid @RequestBody Fax fax) {
         fax.setId(id);
         return faxService.save(fax);
     }

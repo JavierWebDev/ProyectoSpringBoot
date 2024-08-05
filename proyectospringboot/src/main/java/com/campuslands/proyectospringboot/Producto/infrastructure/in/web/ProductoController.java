@@ -1,13 +1,5 @@
 package com.campuslands.proyectospringboot.Producto.infrastructure.in.web;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
-import com.campuslands.proyectospringboot.Producto.application.services.ProductoService;
-
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.campuslands.proyectospringboot.Producto.application.services.ProductoService;
+import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
+
+import jakarta.validation.Valid;
 
 
 
@@ -53,10 +52,10 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-        public ResponseEntity<String> updateProducto(@PathVariable Long id, @RequestBody Producto product) {
+        public ResponseEntity<String> updateProducto(@PathVariable Long id, @Valid @RequestBody Producto product) {
             Optional<Producto> foundProducto = productoService.findById(id);
             if (!foundProducto.isPresent()){
-            return new ResponseEntity<>("Producto no encontrada", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
             }      
             product.setId(id);
             productoService.update(id, product);  

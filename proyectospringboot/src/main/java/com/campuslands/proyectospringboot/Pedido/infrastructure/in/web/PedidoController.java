@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 import com.campuslands.proyectospringboot.Pedido.application.services.PedidoService;
+import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 
 import jakarta.validation.Valid;
 
@@ -50,14 +50,14 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-        public ResponseEntity<String> updatePedido(@PathVariable Long id, @RequestBody Pedido pedido) {
+        public ResponseEntity<String> updatePedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
         Optional<Pedido> foundPedido = pedidoService.findById(id);
         if (!foundPedido.isPresent()){
-            return new ResponseEntity<>("Pedido no encontrada", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Pedido no encontrado", HttpStatus.NOT_FOUND);
         }
             pedido.setId(id);
             pedidoService.update(id, pedido);  
-        return new ResponseEntity<>("Pedido actualizada correctamente", HttpStatus.OK);
+        return new ResponseEntity<>("Pedido actualizado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
