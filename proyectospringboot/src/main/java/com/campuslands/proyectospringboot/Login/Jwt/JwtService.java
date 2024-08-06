@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -24,7 +25,7 @@ public class JwtService {
         return getToken(new HashMap<>(), user);
     }
 
-    private String getToken(Map<String,Object> extraClaims, UserDetails user) {
+    private String getToken(Map<String,Object> extraClaims, UserDetails user) { 
         return Jwts
             .builder()
             .setClaims(extraClaims)
@@ -41,7 +42,7 @@ public class JwtService {
     }
 
     public String getUsernameFromToken(String token) {
-        return getClaim(token, Claims::getSubject);
+        return getAllClaims(token).getSubject();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
@@ -49,14 +50,25 @@ public class JwtService {
         return (username.equals(userDetails.getUsername())&& !isTokenExpired(token));
     }
 
-    private Claims getAllClaims(String token)
-    {
-        return Jwts
-            .parserBuilder()
-            .setSigningKey(getKey())
-            .build()
-            .parseClaimsJws(token)
-            .getBody();
+    private Claims getAllClaims(String token){
+        System.out.println("Token: " + token);
+
+        if (token == null || token.trim().isEmpty()) {
+            System.err.println("Received an empty or null token.");
+            throw new IllegalArgumentException("Token is null or empty");
+        }
+
+        try {
+            return Jwts
+                .parserBuilder()
+                .setSigningKey(getKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        } catch (MalformedJwtException e) {
+            System.err.println("Malformed JWT token: " + token);
+            throw e;
+        }
     }
 
     public <T> T getClaim(String token, Function<Claims,T> claimsResolver)
