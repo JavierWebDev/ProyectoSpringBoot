@@ -24,6 +24,7 @@ import com.campuslands.proyectospringboot.Cliente.application.ClienteService;
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
+
     @Autowired
     ClienteService clienteService;
 
@@ -32,34 +33,44 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> list() {
-        List<Cliente> clientes = clienteService.list();
-        return ResponseEntity.ok(clientes);
+    public List<Cliente> getAllClientes() {
+        return clienteService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> listById(@PathVariable Long id) {
-        Optional<Cliente> fCliente = clienteService.findById(id);
-        if (!fCliente.isPresent()) {
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id) {
+        Optional<Cliente> foundCliente = clienteService.findById(id);
+        if (!foundCliente.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(fCliente.get(), HttpStatus.OK);
+        return new ResponseEntity<>(foundCliente.orElseThrow(), HttpStatus.OK);
     }
 
     @PostMapping
-    public void create(@Valid @RequestBody Cliente cliente) {
-        clienteService.create(cliente);
+    public ResponseEntity<Cliente> createCliente(@Valid @RequestBody Cliente cliente) {
+        clienteService.save(cliente);
+        return new ResponseEntity<>(cliente, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
+    public ResponseEntity<String> updateCliente(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
+        Optional<Cliente> foundCliente = clienteService.findById(id);
+        if (!foundCliente.isPresent()) {
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
         cliente.setId(id);
-        clienteService.create(cliente);
+        clienteService.save(cliente);
+        return new ResponseEntity<>("Cliente actualizado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<String> deleteCliente(@PathVariable Long id) {
+        Optional<Cliente> foundCliente = clienteService.findById(id);
+        if (!foundCliente.isPresent()) {
+            return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
+        }
         clienteService.deleteById(id);
+        return new ResponseEntity<>("Cliente eliminado correctamente", HttpStatus.OK);
     }
 
 }

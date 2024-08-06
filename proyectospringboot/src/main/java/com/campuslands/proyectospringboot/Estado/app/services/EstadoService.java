@@ -1,6 +1,7 @@
 package com.campuslands.proyectospringboot.Estado.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
-    public Estado findById(Long id) {
-        return estadoRepository.findById(id).orElse(null);
+    public Optional<Estado> findById(Long id) {
+        return estadoRepository.findById(id);
     }
 
     public Estado save(Estado estado){
