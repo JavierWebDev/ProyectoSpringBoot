@@ -49,6 +49,7 @@ public class GamaProductoImpl implements GamaProductoService{
         Optional<GamaProducto> gamaProductoOpt = repository.findById(id);
         if (gamaProductoOpt.isPresent()) {
             GamaProducto gamaProductoItem = gamaProductoOpt.orElseThrow();
+            gamaProductoItem.setNombre(gamaProducto.getNombre());
             gamaProductoItem.setDescripcion(gamaProducto.getDescripcion());
             gamaProductoItem.setDescripcionHtml(gamaProducto.getDescripcionHtml());
             gamaProductoItem.setImagen(gamaProducto.getImagen());

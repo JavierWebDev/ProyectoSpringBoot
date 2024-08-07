@@ -18,7 +18,11 @@ public class GamaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message="La descripción del producto no puede ser vacío")
+    @NotBlank(message="El nombre de la gama de producto no puede ser vacío")
+    @Column (nullable = false)
+    private String nombre;
+
+    @NotBlank(message="La descripción de la gama no puede ser vacío")
     @Column (nullable = false)
     private String descripcion;
 

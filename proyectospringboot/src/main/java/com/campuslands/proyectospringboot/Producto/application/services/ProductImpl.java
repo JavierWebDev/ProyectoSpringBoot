@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
+import com.campuslands.proyectospringboot.Producto.domain.entities.ProductoGamaDTO;
 import com.campuslands.proyectospringboot.Producto.infrastructure.out.persistence.ProductRepository;
 
 @Component
@@ -58,6 +59,11 @@ public class ProductImpl implements ProductoService{
             return Optional.of(repository.save(productItem));
         }
         return productOpt;
+    }
+
+    @Override
+    public Optional<List<ProductoGamaDTO>> productosPorGama(String nombreGama) {
+        return Optional.of(repository.productosPorGama(nombreGama));
     }
 
 }
