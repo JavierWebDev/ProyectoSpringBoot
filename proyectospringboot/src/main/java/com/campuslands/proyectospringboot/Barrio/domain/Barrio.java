@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -16,6 +17,7 @@ public class Barrio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_barrio")
+    @NotBlank(message = "El nombre del barrio no puede ser vacío")
+    @Column(name = "nombre_barrio", nullable = false)
     private String nombreBarrio;
 }

@@ -49,7 +49,6 @@ public class ProductImpl implements ProductoService{
         if (productOpt.isPresent()) {
             Producto productItem = productOpt.orElseThrow();
             productItem.setNombreProducto(product.getNombreProducto());
-            productItem.setNombreProducto(product.getNombreProducto());
             productItem.setPrecioProveedor(product.getPrecioProveedor());
             productItem.setPrecioVenta(product.getPrecioVenta());
             productItem.setGamaProducto(product.getGamaProducto());

@@ -1,10 +1,12 @@
 package com.campuslands.proyectospringboot.FormaPago.domain.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -15,5 +17,7 @@ public class FormaPago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message="El nombre de la forma de pago no puede ser vacío")
+    @Column (nullable = false)
     private String FormaPago;
 }

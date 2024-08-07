@@ -1,6 +1,7 @@
 package com.campuslands.proyectospringboot.Dimensiones.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -11,12 +12,15 @@ public class Dimensiones {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ancho")
+    @NotNull(message="El ancho no puede ser nulo")
+    @Column(name = "ancho", nullable = false)
     private double ancho;
 
-    @Column(name = "largo")
+    @NotNull(message="El largo no puede ser nulo")
+    @Column(name = "largo", nullable = false)
     private double largo;
 
-    @Column(name = "alto")
+    @NotNull(message="El alto no puede ser nulo")
+    @Column(name = "alto", nullable = false)
     private double alto;
 }

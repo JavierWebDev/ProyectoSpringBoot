@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -27,6 +28,7 @@ public class Telefono {
     private Integer nombre;
 
     @ManyToOne
+    @Valid
     @NotNull(message="El tipo de telefono no puede ser nulo")
     @JoinColumn(name = "tipo_tel")
     private TipoTelefono tipoTelefono;

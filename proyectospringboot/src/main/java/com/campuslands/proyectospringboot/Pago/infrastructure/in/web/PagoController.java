@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
 import com.campuslands.proyectospringboot.Pago.application.services.PagoService;
+import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
 
 import jakarta.validation.Valid;
 
@@ -50,7 +50,7 @@ public class PagoController {
     }
 
     @PutMapping("/{id}")
-        public ResponseEntity<String> updatePago(@PathVariable Long id, @RequestBody Pago pago) {
+        public ResponseEntity<String> updatePago(@PathVariable Long id, @Valid @RequestBody Pago pago) {
             Optional<Pago> foundPago = pagoService.findById(id);
             if (!foundPago.isPresent()){
                 return new ResponseEntity<>("Pago no encontrado", HttpStatus.NOT_FOUND);

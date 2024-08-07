@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -16,6 +17,7 @@ public class Ciudad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre_ciudad")
+    @NotBlank(message = "El nombre de la ciudad no puede ser vacío")
+    @Column(name = "nombre_ciudad", nullable = false)
     private String nombreCiudad;
 }

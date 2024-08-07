@@ -1,6 +1,7 @@
 package com.campuslands.proyectospringboot.Empleado.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class EmpleadoService {
         return empleadoRepository.findAll();
     }
 
-    public Empleado findById(Long id) {
-        return empleadoRepository.findById(id).orElse(null);
+    public Optional<Empleado> findById(Long id) {
+        return empleadoRepository.findById(id);
     }
 
     public Empleado save(Empleado empleado){

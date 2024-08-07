@@ -1,6 +1,7 @@
 package com.campuslands.proyectospringboot.FormaPago.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class FormaPagoService {
         return formaPagoRepository.findAll();
     }
 
-    public FormaPago findById(Long id){
-        return formaPagoRepository.findById(id).orElse(null);
+    public Optional<FormaPago> findById(Long id){
+        return formaPagoRepository.findById(id);
     }
 
     public FormaPago save(FormaPago formaPago){
