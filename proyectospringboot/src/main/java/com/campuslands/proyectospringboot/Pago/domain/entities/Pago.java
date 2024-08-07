@@ -2,7 +2,7 @@ package com.campuslands.proyectospringboot.Pago.domain.entities;
 
 import java.security.Timestamp;
 
-import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
 import com.campuslands.proyectospringboot.FormaPago.domain.entities.FormaPago;
 
 import jakarta.persistence.Column;
@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -23,16 +25,23 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message="La transaccion no puede ser nulo")
+    @Column(nullable = false)
     private Integer transaccion;
 
     @ManyToOne
-    @JoinColumn(name = "forma_pago_pago")
+    @Valid
+    @NotNull(message="La forma de pago no puede ser nulo")
+    @JoinColumn(name = "forma_pago_pago", referencedColumnName = "id", nullable = false)
     private FormaPago formaPago;
 
-    @Column (name = "fecha_pago")
+    @NotNull(message="La fecha de pago no puede ser nulo")
+    @Column (name = "fecha_pago", nullable=false)
     Timestamp fechaPago;
 
     @ManyToOne
-    @JoinColumn(name = "pago_cliente")
+    @Valid
+    @NotNull(message="El cliente no puede ser nulo")
+    @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
     private Cliente pagoCliente;
 }

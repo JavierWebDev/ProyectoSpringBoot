@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.Direccion.app.services.DireccionService;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -34,12 +35,12 @@ public class DireccionController {
     }
 
     @PostMapping
-    public Direccion createDireccion(@RequestBody Direccion direccion) {
+    public Direccion createDireccion(@Valid @RequestBody Direccion direccion) {
         return direccionService.save(direccion);
     }
 
     @PutMapping("/{id}")
-    public Direccion updateDireccion(@PathVariable Long id, @RequestBody Direccion direccion) {
+    public Direccion updateDireccion(@PathVariable Long id, @Valid @RequestBody Direccion direccion) {
         direccion.setId(id);
         return direccionService.save(direccion);
     }

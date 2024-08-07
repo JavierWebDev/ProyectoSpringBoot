@@ -7,7 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -19,7 +20,8 @@ public class Proveedor {
     @Column(name= "id")
     private Long id;
     
-    @NotNull(message="El nombre no puede ser nulo")
+    @NotBlank(message="El nombre no puede ser vacío")
+    @Size(max=50)
     @Column(name= "nombre_proveedor")
     private String nombre;
 }

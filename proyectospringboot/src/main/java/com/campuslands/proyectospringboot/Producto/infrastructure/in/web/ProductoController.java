@@ -1,20 +1,23 @@
 package com.campuslands.proyectospringboot.Producto.infrastructure.in.web;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.campuslands.proyectospringboot.Producto.application.services.ProductoService;
-import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
-
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.campuslands.proyectospringboot.Producto.application.services.ProductoService;
+import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
+
+import jakarta.validation.Valid;
 
 
 
@@ -29,26 +32,44 @@ public class ProductoController {
     }
 
     @GetMapping
-    public List<Producto> encontrarProductos() {
+    public List<Producto> getAllProductos() {
         return productoService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Producto> getProductoById(@PathVariable Long id) {
+        Optional<Producto> foundProducto = productoService.findById(id);
+        if (!foundProducto.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(foundProducto.orElseThrow(), HttpStatus.OK);
+    }
+
     @PostMapping
-    public Producto crearProducto(@RequestBody Producto producto) {
-        return productoService.save(producto);
+    public ResponseEntity<Producto> createProducto(@Valid @RequestBody Producto producto) {
+        productoService.save(producto);
+        return new ResponseEntity<>(producto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-        public Optional<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto product) {
+        public ResponseEntity<String> updateProducto(@PathVariable Long id, @Valid @RequestBody Producto product) {
+            Optional<Producto> foundProducto = productoService.findById(id);
+            if (!foundProducto.isPresent()){
+            return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
+            }      
             product.setId(id);
-        return productoService.update(id, product);  
+            productoService.update(id, product);  
+        return new ResponseEntity<>("Producto actualizado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
+    public ResponseEntity<String> DeleteProducto(@PathVariable Long id) {
+        Optional<Producto> foundProducto = productoService.findById(id);
+        if (!foundProducto.isPresent()){
+            return new ResponseEntity<>("Producto no encontrado", HttpStatus.NOT_FOUND);
+        } 
         productoService.delete(id);
-    }
-
-    
+        return new ResponseEntity<>("Producto eliminado correctamente", HttpStatus.OK);
+    } 
 }
 

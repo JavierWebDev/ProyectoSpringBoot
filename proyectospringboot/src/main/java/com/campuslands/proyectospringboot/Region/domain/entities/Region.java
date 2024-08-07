@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -18,7 +18,7 @@ public class Region {
     @Column(name= "id")
     private Long id;
 
-    @NotNull(message="El nombre de la region no puede ser nulo")
+    @NotBlank(message="El nombre de la region no puede ser vacío")
     @Column(name= "nombre_region")
     private String nombre;
 }
