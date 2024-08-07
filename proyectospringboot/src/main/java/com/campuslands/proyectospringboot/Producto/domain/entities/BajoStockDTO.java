@@ -3,8 +3,8 @@ package com.campuslands.proyectospringboot.Producto.domain.entities;
 import lombok.Data;
 
 @Data
-public class ProductoGamaDTO {
+public class BajoStockDTO {
     private Long id;
     private String nombreProducto;
-    private String gamaProducto;
+    private Integer stock;
 }

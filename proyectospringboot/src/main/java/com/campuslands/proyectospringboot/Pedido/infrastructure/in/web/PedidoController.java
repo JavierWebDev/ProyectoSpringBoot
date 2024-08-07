@@ -1,5 +1,6 @@
 package com.campuslands.proyectospringboot.Pedido.infrastructure.in.web;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Pedido.application.services.PedidoService;
 import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
+import com.campuslands.proyectospringboot.Pedido.domain.entities.PedidoEstadoDTO;
 
 import jakarta.validation.Valid;
 
@@ -41,6 +44,28 @@ public class PedidoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(foundPedido.orElseThrow(), HttpStatus.OK);
+    }
+
+    @GetMapping("/estado")
+    public ResponseEntity<List<PedidoEstadoDTO>> getPedidosPorEstado(@RequestParam String nombreGama) {
+        Optional<List<PedidoEstadoDTO>> pedidos = pedidoService.pedidosPorEstado(nombreGama);
+        if (pedidos.isPresent()) {
+            return new ResponseEntity<>(pedidos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/rangoFechas/{fechaInicial}/{fechaFinal}")
+    public ResponseEntity<List<Pedido>> getPedidosPorRangoFechas(
+            @PathVariable LocalDate fechaInicial,
+            @PathVariable LocalDate fechaFinal) {
+        Optional<List<Pedido>> pedidos = pedidoService.pedidosPorRangoFecha(fechaInicial, fechaFinal);
+        if (pedidos.isPresent()) {
+            return new ResponseEntity<>(pedidos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

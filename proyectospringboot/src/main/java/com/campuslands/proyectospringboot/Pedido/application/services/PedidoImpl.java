@@ -1,5 +1,6 @@
 package com.campuslands.proyectospringboot.Pedido.application.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
+import com.campuslands.proyectospringboot.Pedido.domain.entities.PedidoEstadoDTO;
 import com.campuslands.proyectospringboot.Pedido.infrastructure.out.persistence.PedidoRepository;
 
 @Component
@@ -59,5 +61,15 @@ public class PedidoImpl implements PedidoService{
             return Optional.of(repository.save(pedidoItem));
         }
         return pedidoOpt;
+    }
+
+    @Override
+    public Optional<List<PedidoEstadoDTO>> pedidosPorEstado(String nombreEstado) {
+        return Optional.of(repository.pedidosPorEstado(nombreEstado));
+    }
+
+    @Override
+    public Optional<List<Pedido>> pedidosPorRangoFecha(LocalDate fechaInicial, LocalDate fechaFinal) {
+        return Optional.of(repository.pedidosPorRangoFecha(fechaInicial, fechaFinal));
     }
 }

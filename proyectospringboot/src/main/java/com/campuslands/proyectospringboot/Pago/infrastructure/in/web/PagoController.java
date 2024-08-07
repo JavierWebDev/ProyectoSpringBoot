@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Pago.application.services.PagoService;
 import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
+import com.campuslands.proyectospringboot.Pago.domain.entities.PagoClienteDTO;
+import com.campuslands.proyectospringboot.Pago.domain.entities.PagoFormaPagoDTO;
 
 import jakarta.validation.Valid;
 
@@ -41,6 +44,26 @@ public class PagoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(foundPago.orElseThrow(), HttpStatus.OK);
+    }
+
+    @GetMapping("/cliente")
+    public ResponseEntity<List<PagoClienteDTO>> getPagosPorCliente(@RequestParam Long clienteId) {
+        Optional<List<PagoClienteDTO>> pagos = pagoService.pagosPorCliente(clienteId);
+        if (pagos.isPresent()) {
+            return new ResponseEntity<>(pagos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/formaPago")
+    public ResponseEntity<List<PagoFormaPagoDTO>> getPagosPorFormaPago(@RequestParam String formaPago) {
+        Optional<List<PagoFormaPagoDTO>> pagos = pagoService.pagosPorFormaPago(formaPago);
+        if (pagos.isPresent()) {
+            return new ResponseEntity<>(pagos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

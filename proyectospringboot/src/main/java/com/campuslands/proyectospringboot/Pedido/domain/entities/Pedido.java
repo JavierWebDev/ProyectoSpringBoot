@@ -1,6 +1,6 @@
 package com.campuslands.proyectospringboot.Pedido.domain.entities;
 
-import java.security.Timestamp;
+import java.time.LocalDate;
 
 import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
 import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
@@ -28,15 +28,15 @@ public class Pedido {
 
     @NotNull(message="La fecha de pedido no puede ser nulo")
     @Column (name = "fecha_pedido", nullable = false)
-    private Timestamp fechaPedido;
+    private LocalDate fechaPedido;
 
     @NotNull(message="La fecha esperada no puede ser nulo")
     @Column (name = "fecha_esperada", nullable = false)
-    private Timestamp fechaEsperada;
+    private LocalDate fechaEsperada;
 
     @NotNull(message="La fecha de entrega no puede ser nulo")
     @Column (name = "fecha_entrega", nullable = false)
-    private Timestamp fechaEntrega;
+    private LocalDate fechaEntrega;
 
     private String comentarios;
 

@@ -25,7 +25,7 @@ public class Telefono {
 
     @NotNull(message="El Numero de telefono no puede ser nulo")
     @Column(name= "numero_tel")
-    private Integer nombre;
+    private Integer numero;
 
     @ManyToOne
     @Valid

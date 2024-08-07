@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.ClienteCiudadDTO;
+import com.campuslands.proyectospringboot.Cliente.domain.ClientePedidoDTO;
 
 import jakarta.validation.Valid;
 
@@ -44,6 +47,26 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(foundCliente.orElseThrow(), HttpStatus.OK);
+    }
+
+    @GetMapping("/ciudad")
+    public ResponseEntity<List<ClienteCiudadDTO>> getClientePorCiudad(@RequestParam String nombreCiudad) {
+        Optional<List<ClienteCiudadDTO>> clientes = clienteService.clientePorCiudad(nombreCiudad);
+        if (clientes.isPresent()) {
+            return new ResponseEntity<>(clientes.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/pedidosPendientes")
+    public ResponseEntity<List<ClientePedidoDTO>> getClientesConPedidosPendientes() {
+        Optional<List<ClientePedidoDTO>> clientes = clienteService.clientesConPedidosPendientes();
+        if (clientes.isPresent()) {
+            return new ResponseEntity<>(clientes.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
