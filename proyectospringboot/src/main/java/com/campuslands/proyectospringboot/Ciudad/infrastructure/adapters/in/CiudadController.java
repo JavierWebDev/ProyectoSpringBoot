@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.campuslands.proyectospringboot.Ciudad.application.CiudadService;
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 
 import jakarta.validation.Valid;
-
-import com.campuslands.proyectospringboot.Ciudad.application.CiudadService;
 
 @RestController
 @RequestMapping("/ciudad")
@@ -52,13 +51,23 @@ public class CiudadController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @Valid @RequestBody Ciudad ciudad) {
+    public ResponseEntity<String> updateCiudad(@PathVariable Long id, @Valid @RequestBody Ciudad ciudad) {
+        Optional<Ciudad> foundCiudad = ciudadService.findById(id);
+        if (!foundCiudad.isPresent()) {
+            return new ResponseEntity<>("Ciudad no encontrada", HttpStatus.NOT_FOUND);
+        }
         ciudad.setId(id);
         ciudadService.create(ciudad);
+        return new ResponseEntity<>("Ciudad ha sido guardada correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCiudad(@PathVariable Long id) {
+        Optional<Ciudad> foundCiudad = ciudadService.findById(id);
+        if (!foundCiudad.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         ciudadService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

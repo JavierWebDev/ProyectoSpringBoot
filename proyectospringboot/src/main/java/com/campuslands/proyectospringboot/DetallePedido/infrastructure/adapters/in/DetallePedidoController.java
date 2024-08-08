@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.DetallePedido.application.DetallePedidoService;
 import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/detallepedido")
 public class DetallePedidoController {
@@ -49,13 +51,23 @@ public class DetallePedidoController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody DetallePedido detallePedido) {
-        detallePedido.setId(id);
-        detallePedidoService.create(detallePedido);
+    public ResponseEntity<String> updateDetallePedido(@PathVariable Long id, @Valid @RequestBody DetallePedido DetallePedido) {
+        Optional<DetallePedido> foundDetallePedido = detallePedidoService.findById(id);
+        if (!foundDetallePedido.isPresent()) {
+            return new ResponseEntity<>("DetallePedido no encontrado", HttpStatus.NOT_FOUND);
+        }
+        DetallePedido.setId(id);
+        detallePedidoService.create(DetallePedido);
+        return new ResponseEntity<>("DetallePedido ha sido guardado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDetallePedido(@PathVariable Long id) {
+        Optional<DetallePedido> foundDetallePedido = detallePedidoService.findById(id);
+        if (!foundDetallePedido.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         detallePedidoService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
