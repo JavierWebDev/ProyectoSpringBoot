@@ -1,6 +1,6 @@
 package com.campuslands.proyectospringboot.DetallePedido.domain;
 
-import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
+import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,5 +41,5 @@ public class DetallePedido {
     @Valid
     @NotNull(message="El pedido no puede ser nulo")
     @JoinColumn(name = "producto_pedido", nullable = false)
-    private Pedido pedido;
+    private Producto producto;
 }
