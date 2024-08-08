@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Producto.application.services.ProductoService;
+import com.campuslands.proyectospringboot.Producto.domain.entities.BajoStockDTO;
 import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
+import com.campuslands.proyectospringboot.Producto.domain.entities.ProductoGamaDTO;
 
 import jakarta.validation.Valid;
 
@@ -43,6 +46,26 @@ public class ProductoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(foundProducto.orElseThrow(), HttpStatus.OK);
+    }
+
+    @GetMapping("/gama")
+    public ResponseEntity<List<ProductoGamaDTO>> getProductosPorGama(@RequestParam String nombreGama) {
+        Optional<List<ProductoGamaDTO>> productos = productoService.productosPorGama(nombreGama);
+        if (productos.isPresent()) {
+            return new ResponseEntity<>(productos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/bajoStock")
+    public ResponseEntity<List<BajoStockDTO>> getProductosConBajoStock(@RequestParam Integer stockLimite) {
+        Optional<List<BajoStockDTO>> productos = productoService.productosConBajoStock(stockLimite);
+        if (productos.isPresent()) {
+            return new ResponseEntity<>(productos.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
