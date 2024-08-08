@@ -55,9 +55,11 @@ public class PedidoImpl implements PedidoService{
             pedidoItem.setComentarios(pedido.getComentarios());
             pedidoItem.setClientePedido(pedido.getClientePedido());
             pedidoItem.setEstadoPedido(pedido.getEstadoPedido());
-            pedidoItem.setDetallePedido(pedido.getDetallePedido());
+            
+
             return Optional.of(repository.save(pedidoItem));
         }
         return pedidoOpt;
     }
+
 }

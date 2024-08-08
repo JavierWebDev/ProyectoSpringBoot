@@ -1,9 +1,8 @@
 package com.campuslands.proyectospringboot.Pedido.domain.entities;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
-import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 import com.campuslands.proyectospringboot.Estado.domain.entities.Estado;
 
 import jakarta.persistence.Column;
@@ -51,13 +50,6 @@ public class Pedido {
     @NotNull(message="El estado de pedido no puede ser nulo")
     @JoinColumn(name = "estado_pedido", referencedColumnName = "id", nullable = false)
     private Estado estadoPedido;
-
-    @ManyToOne
-    @Valid
-    @NotNull(message="El detalle de pedido no puede ser nulo")
-    @JoinColumn(name = "detalle_pedido", referencedColumnName = "id", nullable = false)
-    private DetallePedido detallePedido;
-
 
 }
 
