@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.campuslands.proyectospringboot.Contacto.application.ContactoService;
 import com.campuslands.proyectospringboot.Contacto.domain.Contacto;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/contacto")
 public class ContactoController {
@@ -49,13 +51,23 @@ public class ContactoController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody Contacto contacto) {
-        contacto.setId(id);
-        contactoService.create(contacto);
+    public ResponseEntity<String> updateContacto(@PathVariable Long id, @Valid @RequestBody Contacto Contacto) {
+        Optional<Contacto> foundContacto = contactoService.findById(id);
+        if (!foundContacto.isPresent()) {
+            return new ResponseEntity<>("Contacto no encontrado", HttpStatus.NOT_FOUND);
+        }
+        Contacto.setId(id);
+        contactoService.create(Contacto);
+        return new ResponseEntity<>("Contacto ha sido guardado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteContacto(@PathVariable Long id) {
+        Optional<Contacto> foundContacto = contactoService.findById(id);
+        if (!foundContacto.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         contactoService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

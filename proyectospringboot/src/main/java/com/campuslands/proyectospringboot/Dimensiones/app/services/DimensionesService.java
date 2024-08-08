@@ -1,12 +1,12 @@
 package com.campuslands.proyectospringboot.Dimensiones.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.campuslands.proyectospringboot.Dimensiones.domain.entities.Dimensiones;
 import com.campuslands.proyectospringboot.Dimensiones.infrastructure.adapters.out.DimensionesRepository;
-
 
 import lombok.AllArgsConstructor;
 
@@ -20,8 +20,8 @@ public class DimensionesService {
         return dimensionesRepository.findAll(); 
     }
 
-    public Dimensiones findById(Long id){
-        return dimensionesRepository.findById(id).orElse(null);
+    public Optional<Dimensiones> findById(Long id){
+        return dimensionesRepository.findById(id);
     }
 
     public Dimensiones save(Dimensiones dimensiones){

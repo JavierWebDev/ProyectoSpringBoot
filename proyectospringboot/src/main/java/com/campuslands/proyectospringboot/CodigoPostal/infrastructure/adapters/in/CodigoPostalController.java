@@ -51,13 +51,23 @@ public class CodigoPostalController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @Valid @RequestBody CodigoPostal codigoPostal) {
-        codigoPostal.setId(id);
-        codigoPostalService.create(codigoPostal);
+    public ResponseEntity<String> updateCodigoPostal(@PathVariable Long id, @Valid @RequestBody CodigoPostal CodigoPostal) {
+        Optional<CodigoPostal> foundCodigoPostal = codigoPostalService.findById(id);
+        if (!foundCodigoPostal.isPresent()) {
+            return new ResponseEntity<>("CodigoPostal no encontrado", HttpStatus.NOT_FOUND);
+        }
+        CodigoPostal.setId(id);
+        codigoPostalService.create(CodigoPostal);
+        return new ResponseEntity<>("CodigoPostal ha sido guardado correctamente", HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCodigoPostal(@PathVariable Long id) {
+        Optional<CodigoPostal> foundCodigoPostal = codigoPostalService.findById(id);
+        if (!foundCodigoPostal.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         codigoPostalService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

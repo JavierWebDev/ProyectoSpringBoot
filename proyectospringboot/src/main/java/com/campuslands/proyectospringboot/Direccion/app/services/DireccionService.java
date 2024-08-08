@@ -1,6 +1,7 @@
 package com.campuslands.proyectospringboot.Direccion.app.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class DireccionService {
         return direccionRepository.findAll();
     }
 
-    public Direccion findById(Long id) {
-        return direccionRepository.findById(id).orElse(null);
+    public Optional<Direccion> findById(Long id){
+        return direccionRepository.findById(id);
     }
 
     public Direccion save(Direccion direccion){
