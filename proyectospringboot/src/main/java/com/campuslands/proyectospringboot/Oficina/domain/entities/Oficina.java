@@ -6,6 +6,7 @@ import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Oficina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "id")
     private Long id;
 
     @ManyToOne
@@ -45,7 +47,7 @@ public class Oficina {
     @JoinColumn(name = "pais_oficina", referencedColumnName = "id", nullable = false)
     private Pais pais;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "codigo_postal_oficina", referencedColumnName = "id")
     private CodigoPostal codigoPostal;
 

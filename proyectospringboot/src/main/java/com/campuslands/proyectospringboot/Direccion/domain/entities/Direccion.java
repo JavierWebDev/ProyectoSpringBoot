@@ -33,6 +33,6 @@ public class Direccion {
 
     @ManyToOne
     @NotNull(message="El barrio no puede ser vacío")
-    @JoinColumn(name="barrio", nullable = false)
+    @JoinColumn(name="barrio", referencedColumnName = "id",nullable = false)
     private Barrio dirBarrio;
 }
