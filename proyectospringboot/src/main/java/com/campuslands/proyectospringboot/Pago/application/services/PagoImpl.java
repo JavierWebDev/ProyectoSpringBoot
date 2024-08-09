@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
+import com.campuslands.proyectospringboot.Pago.domain.entities.PagoClienteDTO;
+import com.campuslands.proyectospringboot.Pago.domain.entities.PagoFormaPagoDTO;
 import com.campuslands.proyectospringboot.Pago.infrastructure.out.persistence.PagoRepository;
 
 @Component
@@ -56,5 +58,15 @@ public class PagoImpl implements PagoService {
             return Optional.of(repository.save(pagoItem));
         }
         return pagoOpt;
+    }
+
+    @Override
+    public Optional<List<PagoClienteDTO>> pagosPorCliente(Long clienteId) {
+        return Optional.of(repository.pagosPorCliente(clienteId));
+    }
+
+    @Override
+    public Optional<List<PagoFormaPagoDTO>> pagosPorFormaPago(String formaPago) {
+        return Optional.of(repository.pagosPorFormaPago(formaPago));
     }
 }

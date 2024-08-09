@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
+import com.campuslands.proyectospringboot.Empleado.domain.entities.EmpleadoOficinaDTO;
+import com.campuslands.proyectospringboot.Empleado.domain.entities.EmpleadoPedidoDTO;
 import com.campuslands.proyectospringboot.Empleado.infrastructure.adapters.out.EmpleadoRepository;
 
 import lombok.AllArgsConstructor;
@@ -31,5 +33,11 @@ public class EmpleadoService {
         empleadoRepository.deleteById(id);
     }
 
+    public Optional<List<EmpleadoOficinaDTO>> empleadosPorOficina(Long oficinaId) {
+        return Optional.of(empleadoRepository.empleadosPorOficina(oficinaId));
+    }
 
+    public Optional<List<EmpleadoPedidoDTO>> empleadosConPedidos(){
+        return Optional.of(empleadoRepository.empleadosConPedidos());
+    }
 }

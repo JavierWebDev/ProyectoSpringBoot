@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campuslands.proyectospringboot.Empleado.app.services.EmpleadoService;
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
+import com.campuslands.proyectospringboot.Empleado.domain.entities.EmpleadoOficinaDTO;
+import com.campuslands.proyectospringboot.Empleado.domain.entities.EmpleadoPedidoDTO;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -39,6 +42,26 @@ public class EmpleadoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(foundEmpleado.orElseThrow(), HttpStatus.OK);
+    }
+
+    @GetMapping("/oficina")
+    public ResponseEntity<List<EmpleadoOficinaDTO>> getEmpleadosPorOficina(@RequestParam Long oficinaId) {
+        Optional<List<EmpleadoOficinaDTO>> empleados = empleadoService.empleadosPorOficina(oficinaId);
+        if (empleados.isPresent()) {
+            return new ResponseEntity<>(empleados.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/pedidos")
+    public ResponseEntity<List<EmpleadoPedidoDTO>> getEmpleadosConPedidos() {
+        Optional<List<EmpleadoPedidoDTO>> empleados = empleadoService.empleadosConPedidos();
+        if (empleados.isPresent()) {
+            return new ResponseEntity<>(empleados.orElseThrow(), HttpStatus.OK);
+        }
+        System.out.println("Busqueda sin resultados");
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

@@ -5,7 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.entities.ClienteCiudadDTO;
 import com.campuslands.proyectospringboot.Cliente.infrastructure.adapters.out.ClienteRepository;
 
 @Service
@@ -30,5 +31,9 @@ public class ClienteService {
 
     public void deleteById(Long id) {
         clienteRepository.deleteById(id);
+    }
+
+    public Optional<List<ClienteCiudadDTO>> clientePorCiudad(String nombreCiudad) {
+        return Optional.of(clienteRepository.clientePorCiudad(nombreCiudad));
     }
 }

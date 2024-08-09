@@ -2,7 +2,7 @@ package com.campuslands.proyectospringboot.Pago.domain.entities;
 
 import java.security.Timestamp;
 
-import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
+import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
 import com.campuslands.proyectospringboot.FormaPago.domain.entities.FormaPago;
 
 import jakarta.persistence.Column;

@@ -1,4 +1,4 @@
-package com.campuslands.proyectospringboot.Cliente.domain;
+package com.campuslands.proyectospringboot.Cliente.domain.entities;
 
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;

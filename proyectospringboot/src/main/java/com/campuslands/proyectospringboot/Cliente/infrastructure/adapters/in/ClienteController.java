@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
-
 import jakarta.validation.Valid;
 
 import com.campuslands.proyectospringboot.Cliente.application.ClienteService;
+import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
 
 @RestController
 @RequestMapping("/cliente")
