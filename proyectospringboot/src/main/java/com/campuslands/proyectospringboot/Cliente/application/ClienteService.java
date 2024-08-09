@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
 import com.campuslands.proyectospringboot.Cliente.domain.entities.ClienteCiudadDTO;
+import com.campuslands.proyectospringboot.Cliente.domain.entities.ClientePedidoDTO;
 import com.campuslands.proyectospringboot.Cliente.infrastructure.adapters.out.ClienteRepository;
 
 @Service
@@ -35,5 +36,9 @@ public class ClienteService {
 
     public Optional<List<ClienteCiudadDTO>> clientePorCiudad(String nombreCiudad) {
         return Optional.of(clienteRepository.clientePorCiudad(nombreCiudad));
+    }
+
+    public Optional<List<ClientePedidoDTO>> clientesConPedidosPendientes () {
+        return Optional.of(clienteRepository.clientesConPedidosPendientes());
     }
 }
