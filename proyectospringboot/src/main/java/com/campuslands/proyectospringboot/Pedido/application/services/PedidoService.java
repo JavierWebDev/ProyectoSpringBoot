@@ -2,6 +2,7 @@ package com.campuslands.proyectospringboot.Pedido.application.services;
 
 import java.util.List;
 import java.util.Optional;
+
 import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 
 public interface PedidoService {
@@ -10,4 +11,5 @@ public interface PedidoService {
     Pedido save(Pedido pedido);
     Optional<Pedido> update(Long id, Pedido pedido);
     Optional<Pedido> delete(Long id);
+    
 }

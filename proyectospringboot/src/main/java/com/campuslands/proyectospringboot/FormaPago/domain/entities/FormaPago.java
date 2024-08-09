@@ -19,5 +19,5 @@ public class FormaPago {
 
     @NotBlank(message="El nombre de la forma de pago no puede ser vacío")
     @Column (nullable = false)
-    private String FormaPago;
+    private String formaPago;
 }

@@ -1,6 +1,6 @@
 package com.campuslands.proyectospringboot.Pago.domain.entities;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 import com.campuslands.proyectospringboot.Cliente.domain.Cliente;
 import com.campuslands.proyectospringboot.FormaPago.domain.entities.FormaPago;
@@ -37,7 +37,7 @@ public class Pago {
 
     @NotNull(message="La fecha de pago no puede ser nulo")
     @Column (name = "fecha_pago", nullable=false)
-    Timestamp fechaPago;
+    private Timestamp fechaPago;
 
     @ManyToOne
     @Valid

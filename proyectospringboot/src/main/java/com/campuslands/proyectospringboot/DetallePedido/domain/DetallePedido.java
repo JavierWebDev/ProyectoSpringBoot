@@ -1,5 +1,6 @@
 package com.campuslands.proyectospringboot.DetallePedido.domain;
 
+import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 import com.campuslands.proyectospringboot.Producto.domain.entities.Producto;
 
 import jakarta.persistence.Column;
@@ -36,6 +37,10 @@ public class DetallePedido {
     @Size(max=50)
     @Column(name = "numero_linea", nullable = false)
     private String numeroLinea;
+
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
     @OneToOne
     @Valid
