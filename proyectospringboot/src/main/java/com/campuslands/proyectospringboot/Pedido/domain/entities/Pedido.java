@@ -3,7 +3,6 @@ package com.campuslands.proyectospringboot.Pedido.domain.entities;
 import java.time.LocalDate;
 
 import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
-import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 import com.campuslands.proyectospringboot.Estado.domain.entities.Estado;
 
 import jakarta.persistence.Column;
