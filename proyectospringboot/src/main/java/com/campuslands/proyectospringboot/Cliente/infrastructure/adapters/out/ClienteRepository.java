@@ -19,7 +19,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
             "where ci.nombreCiudad=?1")
     List<ClienteCiudadDTO> clientePorCiudad(String nombreCiudad);
 
-    @Query("select distinct new com.campuslands.proyectospringboot.Pedido.domain.entities.ClientePedidoDTO(cp, ep.estado)" +
+    @Query("select distinct new com.campuslands.proyectospringboot.Cliente.domain.entities.ClientePedidoDTO(cp, ep.estado)" +
             "from Pedido p " +
             "join p.clientePedido cp "+
             "join p.estadoPedido ep "+
