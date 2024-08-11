@@ -10,8 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.campuslands.proyectospringboot.Oficina.domain.entities.Oficina;
 import com.campuslands.proyectospringboot.Oficina.infrastructure.out.persistence.OficinaRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 @Component
 public class OficinaImpl implements OficinaService{
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     private OficinaRepository repository;
@@ -58,5 +64,17 @@ public class OficinaImpl implements OficinaService{
             return Optional.of(repository.save(oficinaItem));
         }
         return oficinaOpt;
+    }
+
+    @Transactional
+    @Override
+    public void disableForeignKeyChecks() {
+        entityManager.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
+    }
+
+    @Transactional
+    @Override
+    public void enableForeignKeyChecks() {
+        entityManager.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
     }
 }

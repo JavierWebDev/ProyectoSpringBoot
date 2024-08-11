@@ -14,4 +14,6 @@ public interface OficinaService {
     Oficina save(Oficina oficina);
     Optional<Oficina> update(Long id, Oficina oficina);
     Optional<Oficina> delete(Long id);
+    void disableForeignKeyChecks();
+    void enableForeignKeyChecks();
 }

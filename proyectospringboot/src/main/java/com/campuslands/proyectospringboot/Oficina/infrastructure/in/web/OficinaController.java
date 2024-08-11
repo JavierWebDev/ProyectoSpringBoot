@@ -66,7 +66,9 @@ public class OficinaController {
         if (!foundOficina.isPresent()){
             return new ResponseEntity<>("Oficina no encontrada", HttpStatus.NOT_FOUND);
         } 
+        oficinaService.disableForeignKeyChecks();
         oficinaService.delete(id);
+        oficinaService.enableForeignKeyChecks();
         return new ResponseEntity<>("Oficina eliminada correctamente", HttpStatus.OK);
     }
 }
