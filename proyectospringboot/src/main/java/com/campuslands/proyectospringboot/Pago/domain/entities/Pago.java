@@ -41,7 +41,6 @@ public class Pago {
 
     @ManyToOne
     @Valid
-    @NotNull(message="El cliente no puede ser nulo")
-    @JoinColumn(name = "pago_cliente", referencedColumnName = "id", nullable = false)
-    private Cliente pagoCliente;
+    @JoinColumn(name = "pago_cliente", referencedColumnName = "id")
+    private Cliente cliente;
 }

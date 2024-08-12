@@ -13,9 +13,9 @@ import com.campuslands.proyectospringboot.Pago.domain.entities.PagoFormaPagoDTO;
 @Repository
 public interface PagoRepository extends JpaRepository<Pago,Long>{
 
-        @Query("select new com.campuslands.proyectospringboot.Pago.domain.entities.PagoClienteDTO(p.id, p.transaccion, p.pagoCliente)" +
+        @Query("select new com.campuslands.proyectospringboot.Pago.domain.entities.PagoClienteDTO(p.id, p.transaccion, p.cliente)" +
                 "from Pago p " +
-                "where p.pagoCliente=?1")
+                "where p.cliente=?1")
         List<PagoClienteDTO> pagosPorCliente (Long clienteId);
 
         @Query("select new com.campuslands.proyectospringboot.Pago.domain.entities.PagoFormaPagoDTO(p.id, p.transaccion, fp.formaPago)" +
