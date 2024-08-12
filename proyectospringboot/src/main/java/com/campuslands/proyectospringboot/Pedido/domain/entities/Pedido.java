@@ -3,7 +3,6 @@ package com.campuslands.proyectospringboot.Pedido.domain.entities;
 import java.time.LocalDate;
 
 import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
-import com.campuslands.proyectospringboot.DetallePedido.domain.DetallePedido;
 import com.campuslands.proyectospringboot.Estado.domain.entities.Estado;
 
 import jakarta.persistence.Column;
@@ -14,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -41,15 +39,11 @@ public class Pedido {
     private String comentarios;
 
     @ManyToOne
-    @Valid
-    @NotNull(message="El cliente no puede ser nulo")
-    @JoinColumn(name = "cliente_pedido", referencedColumnName = "id", nullable = false)
-    private Cliente clientePedido;
+    @JoinColumn(name = "cliente_pedido")
+    private Cliente cliente;
 
     @ManyToOne
-    @Valid
-    @NotNull(message="El estado de pedido no puede ser nulo")
-    @JoinColumn(name = "estado_pedido", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "estado_pedido", referencedColumnName = "id")
     private Estado estadoPedido;
 
 }
