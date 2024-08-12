@@ -21,7 +21,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Query("select distinct new com.campuslands.proyectospringboot.Cliente.domain.entities.ClientePedidoDTO(cp, ep.estado)" +
             "from Pedido p " +
-            "join p.clientePedido cp "+
+            "join p.cliente cp "+
             "join p.estadoPedido ep "+
             "where ep.estado='Pendiente'")
     List<ClientePedidoDTO> clientesConPedidosPendientes ();

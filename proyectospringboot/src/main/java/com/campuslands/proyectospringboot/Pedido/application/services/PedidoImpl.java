@@ -1,8 +1,8 @@
 package com.campuslands.proyectospringboot.Pedido.application.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,7 +55,7 @@ public class PedidoImpl implements PedidoService{
             pedidoItem.setFechaEsperada(pedido.getFechaEsperada());
             pedidoItem.setFechaEntrega(pedido.getFechaEntrega());
             pedidoItem.setComentarios(pedido.getComentarios());
-            pedidoItem.setClientePedido(pedido.getClientePedido());
+            pedidoItem.setCliente(pedido.getCliente());
             pedidoItem.setEstadoPedido(pedido.getEstadoPedido());
             
 

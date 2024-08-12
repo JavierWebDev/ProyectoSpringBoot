@@ -20,7 +20,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long>{
 
     @Query("select new com.campuslands.proyectospringboot.Empleado.domain.entities.EmpleadoPedidoDTO(e, p.id, cp.id)" +
             "from Pedido p " +
-            "join p.clientePedido cp " +
+            "join p.cliente cp " +
             "join cp.empleado e " +
             "order by e.id")
     List<EmpleadoPedidoDTO> empleadosConPedidos();

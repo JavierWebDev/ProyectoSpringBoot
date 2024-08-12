@@ -1,11 +1,15 @@
 package com.campuslands.proyectospringboot.Oficina.domain.entities;
 
+import java.util.Set;
+
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
+import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -20,7 +25,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
-@Table
+@Table(name = "oficina")
 @Data
 public class Oficina {
 
@@ -56,4 +61,7 @@ public class Oficina {
     @NotNull(message="La dirección de la oficina no puede ser nulo")
     @JoinColumn(name = "direccion_oficina", referencedColumnName = "id", nullable = false)
     private Direccion direccion;
+
+    @OneToMany(mappedBy = "oficina", cascade= CascadeType.ALL, orphanRemoval = true)
+    private Set<Empleado> empleado;
 }

@@ -10,9 +10,19 @@ import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 import com.campuslands.proyectospringboot.Fax.domain.entities.Fax;
 import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
+import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -80,9 +90,11 @@ public class Cliente {
      
 
     @ManyToOne
-    @NotNull(message = "El empleado no puede ser nulo")
-    @JoinColumn(name = "empleado_cliente", nullable = false)
+    @JoinColumn(name = "empleado_cliente")
     private Empleado empleado;
+
+    @OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
+    private Set<Pedido> cliente_pedido;    
 
     @OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
     private Set<Pago> pago;
