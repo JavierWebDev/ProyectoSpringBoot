@@ -54,7 +54,7 @@ public class PagoImpl implements PagoService {
             pagoItem.setTransaccion(pago.getTransaccion());
             pagoItem.setFormaPago(pago.getFormaPago());
             pagoItem.setFechaPago(pago.getFechaPago());
-            pagoItem.setPagoCliente(pago.getPagoCliente());
+            pagoItem.setCliente(pago.getCliente());
             return Optional.of(repository.save(pagoItem));
         }
         return pagoOpt;

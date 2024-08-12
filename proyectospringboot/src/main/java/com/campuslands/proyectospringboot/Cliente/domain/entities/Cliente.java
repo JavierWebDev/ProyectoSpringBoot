@@ -1,11 +1,14 @@
 package com.campuslands.proyectospringboot.Cliente.domain.entities;
 
+import java.util.Set;
+
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.Contacto.domain.Contacto;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 import com.campuslands.proyectospringboot.Fax.domain.entities.Fax;
+import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
@@ -80,4 +83,7 @@ public class Cliente {
     @NotNull(message = "El empleado no puede ser nulo")
     @JoinColumn(name = "empleado_cliente", nullable = false)
     private Empleado empleado;
+
+    @OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
+    private Set<Pago> pago;
 }
