@@ -8,7 +8,9 @@ import com.campuslands.proyectospringboot.Contacto.domain.Contacto;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
 import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 import com.campuslands.proyectospringboot.Fax.domain.entities.Fax;
+import com.campuslands.proyectospringboot.Pago.domain.entities.Pago;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
+import com.campuslands.proyectospringboot.Pedido.domain.entities.Pedido;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
 import jakarta.persistence.*;
@@ -85,4 +87,8 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
     private Set<Pedido> pedido;
+
+    @OneToMany(mappedBy = "cliente", cascade= CascadeType.ALL, orphanRemoval = true)
+    private Set<Pago> pago;
 }
+
