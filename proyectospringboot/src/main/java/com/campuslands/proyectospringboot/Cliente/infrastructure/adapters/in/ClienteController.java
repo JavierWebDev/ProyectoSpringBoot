@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
-
 import com.campuslands.proyectospringboot.Cliente.application.ClienteService;
 import com.campuslands.proyectospringboot.Cliente.domain.entities.Cliente;
 import com.campuslands.proyectospringboot.Cliente.domain.entities.ClienteCiudadDTO;
 import com.campuslands.proyectospringboot.Cliente.domain.entities.ClientePedidoDTO;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/cliente")
@@ -91,7 +91,9 @@ public class ClienteController {
         if (!foundCliente.isPresent()) {
             return new ResponseEntity<>("Cliente no encontrado", HttpStatus.NOT_FOUND);
         }
+        clienteService.disableForeignKeyChecks();
         clienteService.deleteById(id);
+        clienteService.enableForeignKeyChecks();
         return new ResponseEntity<>("Cliente eliminado correctamente", HttpStatus.OK);
     }
 

@@ -51,7 +51,6 @@ public class JwtService {
     }
 
     private Claims getAllClaims(String token){
-        System.out.println("Token: " + token);
 
         if (token == null || token.trim().isEmpty()) {
             System.err.println("Received an empty or null token.");

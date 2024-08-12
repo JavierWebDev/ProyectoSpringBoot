@@ -13,6 +13,7 @@ import com.campuslands.proyectospringboot.Cliente.domain.entities.ClientePedidoD
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
+
     @Query("select new com.campuslands.proyectospringboot.Cliente.domain.entities.ClienteCiudadDTO(c.id, c.nombre, c.apellido1, ci.nombreCiudad)" +
             "from Cliente c " +
             "join c.ciudad ci " +

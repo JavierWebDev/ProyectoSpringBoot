@@ -1,15 +1,11 @@
 package com.campuslands.proyectospringboot.Oficina.domain.entities;
 
-import java.util.Set;
-
 import com.campuslands.proyectospringboot.Ciudad.domain.Ciudad;
 import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import com.campuslands.proyectospringboot.Direccion.domain.entities.Direccion;
-import com.campuslands.proyectospringboot.Empleado.domain.entities.Empleado;
 import com.campuslands.proyectospringboot.Pais.domain.entities.Pais;
 import com.campuslands.proyectospringboot.Telefono.domain.entitie.Telefono;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
@@ -62,6 +57,4 @@ public class Oficina {
     @JoinColumn(name = "direccion_oficina", referencedColumnName = "id", nullable = false)
     private Direccion direccion;
 
-    @OneToMany(mappedBy = "oficina", cascade= CascadeType.ALL, orphanRemoval = true)
-    private Set<Empleado> empleado;
 }
