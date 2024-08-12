@@ -1,6 +1,8 @@
 package com.campuslands.proyectospringboot.Pedido.infrastructure.in.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -61,16 +63,29 @@ public class PedidoController {
         return new ResponseEntity<>(pedido, HttpStatus.CREATED);
     }
 
+    // @PutMapping("/{id}")
+    //     public ResponseEntity<String> updatePedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
+    //     Optional<Pedido> foundPedido = pedidoService.findById(id);
+    //     if (!foundPedido.isPresent()){
+    //         return new ResponseEntity<>("Pedido no encontrado", HttpStatus.NOT_FOUND);
+    //     }
+    //         pedido.setId(id);
+    //         pedidoService.update(id, pedido);  
+    //     return new ResponseEntity<>("Pedido actualizado correctamente", HttpStatus.OK);
+    // }
     @PutMapping("/{id}")
-        public ResponseEntity<String> updatePedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
-        Optional<Pedido> foundPedido = pedidoService.findById(id);
-        if (!foundPedido.isPresent()){
-            return new ResponseEntity<>("Pedido no encontrado", HttpStatus.NOT_FOUND);
+    public ResponseEntity<Map<String, String>> updatePedido(@PathVariable Long id, @Valid @RequestBody Pedido pedido) {
+        Optional<Pedido> existingPuesto = pedidoService.findById(id);
+        if (!existingPuesto.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-            pedido.setId(id);
-            pedidoService.update(id, pedido);  
-        return new ResponseEntity<>("Pedido actualizado correctamente", HttpStatus.OK);
-    }
+        pedido.setId(id);
+        pedidoService.save(pedido);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Pedido actualizado correctamente");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+}
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> DeletePedido(@PathVariable Long id) {

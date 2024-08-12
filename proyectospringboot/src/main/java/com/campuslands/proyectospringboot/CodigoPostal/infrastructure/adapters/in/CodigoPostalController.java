@@ -21,7 +21,7 @@ import com.campuslands.proyectospringboot.CodigoPostal.domain.CodigoPostal;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/codigopostal")
+@RequestMapping("/codigo_postal")
 public class CodigoPostalController {
     @Autowired
     CodigoPostalService codigoPostalService;
@@ -31,9 +31,8 @@ public class CodigoPostalController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CodigoPostal>> list() {
-        List<CodigoPostal> codigoPostales = codigoPostalService.list();
-        return ResponseEntity.ok(codigoPostales);
+    public List<CodigoPostal> getAllPuestos() {
+        return codigoPostalService.findAll();
     }
 
     @GetMapping("/{id}")

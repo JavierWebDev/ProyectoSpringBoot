@@ -16,7 +16,7 @@ public class CodigoPostalService {
         this.codigoPostalRepository = codigoPostalRepository;
     }
 
-    public List<CodigoPostal> list() {
+    public List<CodigoPostal> findAll() {
         return codigoPostalRepository.findAll();
     }
 

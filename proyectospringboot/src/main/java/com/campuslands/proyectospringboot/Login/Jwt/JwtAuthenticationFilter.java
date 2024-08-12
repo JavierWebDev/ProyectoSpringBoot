@@ -34,7 +34,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String username;
 
         if (token == null) {
-            System.err.println("Token is null");
             filterChain.doFilter(request, response);
             return;
         }
@@ -43,7 +42,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             username = jwtService.getUsernameFromToken(token);
-            System.out.println("Username extracted: " + username);
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);

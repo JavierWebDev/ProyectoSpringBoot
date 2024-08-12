@@ -17,7 +17,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
-@Table
+@Table(name = "pedidos")
 @Data
 public class Pedido {
     @Id
@@ -39,7 +39,7 @@ public class Pedido {
     private String comentarios;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_pedido")
+    @JoinColumn(name = "cliente_pedido", nullable = true)  
     private Cliente cliente;
 
     @ManyToOne
